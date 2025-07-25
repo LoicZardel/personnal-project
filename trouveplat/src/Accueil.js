@@ -1,13 +1,40 @@
+import { auth } from './firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import './App.css';
 import dishlogo from './dishlogo.png';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import { IoEyeSharp } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa"; 
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
 
 
 function App() {
+  const handleGoogleLogin = () => {
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      alert("Connecté avec Google : " + user.email);
+      handleCloseLoginPopup(); // ← ferme la popup si tu l'utilises
+      // navigate("/Resto"); ← redirection si tu veux
+    })
+    .catch((error) => {
+      if (error.code === 'auth/account-exists-with-different-credential') {
+        alert("Un compte existe déjà avec cette adresse, mais pas via Google.");
+      } else {
+        alert("Erreur Google : " + error.message);
+      }
+    });
+};
+
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   
   const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
@@ -63,42 +90,53 @@ function App() {
             <div className="popup-content">
               <span className="close" onClick={handleCloseSignupPopup}>&times;</span>
               <h3 className='titlelog'>Inscription</h3>
-              <form autoComplete="off"  onSubmit={(e) => {
+
+               {/*envoi des données du formulaire au backend */}
+             <form onSubmit={(e) => {
   e.preventDefault();
 
-  const nom = e.target.nom.value;
-  const telephone = e.target.telephone.value;
   const email = e.target.email.value;
   const motdepasse = e.target.motdepasse.value;
 
-  fetch('http://127.0.0.1:8000/api/inscription/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      nom,
-      telephone,
-      email,
-      motdepasse
+  createUserWithEmailAndPassword(auth, email, motdepasse)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert("Inscription réussie !");
+      handleCloseSignupPopup();  // Ferme la popup
     })
-  })
-    .then(res => res.json())
-    .then(data => {
-      alert(data.message || "Inscription réussie !");
-      handleCloseSignupPopup(); // Fermer le popup si besoin
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Erreur lors de l'inscription.");
+    .catch((error) => {
+      alert("Erreur : " + error.message);
     });
 }}>
   <input name="nom" type="text" placeholder="Nom" required className="form-control mb-2" />
   <input name="telephone" type="tel" placeholder="Téléphone" required className="form-control mb-2" />
   <input name="email" type="email" placeholder="Email" required className="form-control mb-2" />
-  <input name="motdepasse" type="password" placeholder="Mot de passe" required className="form-control mb-2" />
-  <button type="submit" className="btn btn-primary">S'inscrire</button>
+ <div className="input-group mb-3">
+  <input
+    name="motdepasse"
+    type={showPassword ? "text" : "password"}
+    placeholder="Mot de passe"
+    required
+    className="form-control"
+  />
+  <button
+    type="button"
+    className="btn btn-outline-secondary"
+    onClick={() => setShowPassword(!showPassword)}
+    tabIndex={-1}
+    style={{border:'none',height:31}}
+  >
+    {showPassword ? <IoEyeSharp /> : <FaEyeSlash />}
+  </button>
+</div>
+  <button type="submit" className="btn btn-primary" style={{width:200}}>S'inscrire</button>
+  <hr className="my-1" />
+<button type="button" onClick={handleGoogleLogin} className="btn btn-light" id='google-login' style={{width:200,borderRadius:5,border:'1px solid #ccc'}}>
+      Continuer avec Google <FcGoogle />
+</button>
+
 </form>
+
 
             </div>
           </div>
@@ -110,41 +148,53 @@ function App() {
             <div className="popup-content">
               <span className="close" onClick={handleCloseLoginPopup}>&times;</span>
               <h3 className='titlelog'>Se connecter</h3>
-              <form autoComplete="off"   onSubmit={(e) => {
+
+               {/*envoi des données du formulaire de connexion au backend */}
+              <form onSubmit={(e) => {
   e.preventDefault();
 
   const email = e.target.email.value;
   const motdepasse = e.target.motdepasse.value;
 
-  fetch('http://127.0.0.1:8000/api/connexion/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      motdepasse
-    })
+  signInWithEmailAndPassword(auth, email, motdepasse)
+  .then((userCredential) => {
+    // connexion réussie
+    const user = userCredential.user;
+    console.log("Connecté : ", user.email);
+    navigate('/Resto'); // redirection vers la page Resto
   })
-    .then(res => res.json())
-    .then(data => {
-      if (data.message) {
-        alert(data.message + " Bonjour " + data.nom);
-handleCloseLoginPopup(); // Ferme le popup
-navigate('/Resto');      // Redirection vers la page resto ✅
-
-      } else {
-        alert(data.error);
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Erreur de connexion.");
-    });
+  .catch((error) => {
+    if (error.code === 'auth/invalid-credential') {
+      alert("Erreur : mauvais mot de passe ou le compte a été créé avec Google.");
+    } else {
+      alert("Erreur : " + error.message);
+    }
+  });
 }}>
   <input name="email" type="email" placeholder="Email" required className="form-control mb-4" />
-  <input name="motdepasse" type="password" placeholder="Mot de passe" required className="form-control mb-3" />
+  <div className="input-group mb-3">
+  <input
+    name="motdepasse"
+    type={showPassword ? "text" : "password"}
+    placeholder="Mot de passe"
+    required
+    className="form-control"
+  />
+  <button
+    type="button"
+    className="btn btn-outline-secondary"
+    onClick={() => setShowPassword(!showPassword)}
+    tabIndex={-1}
+    style={{border:'none',height:31}}
+  >
+    {showPassword ? <IoEyeSharp /> : <FaEyeSlash />}
+  </button>
+</div>
+
   <button type="submit" className="btn btn-primary mb-3" style={{fontSize:16,width:100,borderRadius:5}}>Connexion</button>
+  <hr className="my-1" />
+  
+  
 </form>
 
             </div>
