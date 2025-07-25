@@ -1,0 +1,151 @@
+.App {
+  text-align: center;
+   background-image:url('./dish.jpg'); /* Assure-toi que le chemin est correct */
+  background-size:cover; /* Pour couvrir tout l'écran */
+  background-repeat:no-repeat; /* Pour éviter la répétition de l'image */
+  background-position:center; /* Pour centrer l'image */
+  height:100vh; /* Pour occuper toute la hauteur de la fenêtre */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font: size 16px;
+  
+      
+}
+.log{
+  padding-left: 80%;
+}
+.search-container {
+  display: flex; /* Utilise flexbox pour aligner les éléments */
+  justify-content: center; /* Centrer le contenu */
+  align-items: center; /* Aligner verticalement */
+  margin: 20px 0; /* Espacement autour du conteneur */
+  width: 60%; /* Assurer que le conteneur prend toute la largeur */
+}
+
+input {
+ border-radius: 5px; /* Arrondi des bords de la zone de saisie */
+  padding: 10px; /* Ajout de padding pour le confort */
+  border: 1px solid #ccc; /* Bordure pour la zone de saisie */
+  width: 55%; /* Prendre toute la largeur du conteneur */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère pour donner de la profondeur */
+  transition: border-color 0.3s; /* Transition pour les changements de couleur */
+  height: 120%;
+ 
+}
+
+button {
+   height: 100%;
+  border-radius: 5px; /* Arrondi des bords du bouton */
+  padding: 8px 20px; /* Augmenter le padding pour une hauteur plus grande */
+  border: none; /* Supprimer la bordure par défaut */
+  background-color: #4CAF50; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte du bouton */
+  cursor: pointer; /* Changer le curseur au survol */
+  width: 30%; /* Largeur fixe du bouton */
+  margin-left: 9px; /* Espacement entre l'input et le bouton */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère pour donner de la profondeur */
+  transition: background-color 0.3s; /* Transition pour la couleur de fond */
+  
+}
+#search{
+background-color: #4CAF50;
+border: none;
+width: 150px;
+height: 50px;
+}
+#search :hover{
+
+border: none;
+}
+
+  
+
+button:hover {
+  background-color: #E84710; /* Couleur de fond au survol */
+}
+
+.App-logo {
+  height: 200px;
+  padding-bottom: 40px;
+  
+ 
+}
+
+
+
+.App-header {
+  background-color: #282c34a2; /* Couleur de fond */
+  height: 100vh; /* Hauteur de l'écran */
+  width: 100%; /* Largeur de l'écran */
+  display: flex; /* Utilisation de flexbox */
+  flex-direction: column; /* Orientation verticale */
+  align-items: center; /* Alignement horizontal */
+  justify-content: center; /* Alignement vertical */
+  font-size: calc(10px + 2vmin); /* Taille de police adaptative */
+  color: white; /* Couleur du texte */
+  padding: 0; /* Pas d'espacement interne */
+  
+}
+#cmd{
+  background-color: #E84710;
+  border: none;
+}
+.login{
+  background-color: #1b63ff;
+   border-radius: 30px;
+   height: 40%;
+   margin-bottom:5% ;
+   width: 60%;
+   font-size: 16px;
+
+  
+}
+.App-link {
+  color: #fdfdfd;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.titlelog{
+  color: rgb(24, 23, 23);
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  color: rgb(51, 50, 50);
+}
+.logins{
+ height: 03%;
+}
+
+/*ddddd
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/

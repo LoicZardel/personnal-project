@@ -1,0 +1,25 @@
+
+#logo{
+    width: 30px;
+}
+.c1 img{
+    width: 70%;
+
+    
+}
+#gps{
+    width: 70%;
+    height: auto;
+    
+}
+.map{
+     width: 70%;
+}
+#now{
+    width: 70%;
+    border-radius: 5px;
+
+}
+.now:hover{
+    background-color:  #E84710;
+}

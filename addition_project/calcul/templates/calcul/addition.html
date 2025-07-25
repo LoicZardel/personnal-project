@@ -1,0 +1,25 @@
+<!-- calcul/templates/calcul/addition.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Addition</title>
+</head>
+<body>
+    <h1>Addition de deux nombres</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nombre1">Nombre 1 :</label>
+        <input type="number" name="nombre1" required><br><br>
+
+        <label for="nombre2">Nombre 2 :</label>
+        <input type="number" name="nombre2" required><br><br>
+
+        <button type="submit">Calculer</button>
+    </form>
+
+    {% if resultat is not None %}
+        <p>La somme est : {{ resultat }}</p>
+    {% endif %}
+</body>
+</html>

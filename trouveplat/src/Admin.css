@@ -1,0 +1,54 @@
+.l1{
+    
+    margin-left: 20%;
+    padding-top: 5%;
+    
+}
+.l1 p{
+    font-size: 18px;
+    font-weight:bold;
+    padding-left: 2%;
+    
+}
+.lb{
+    display: flex;
+    margin: 2%;
+    width: 100%;
+}
+.lb p{
+    
+    width: 50%;
+}
+.b{
+  padding-left: 35%;
+  width: 100%;
+
+}
+.b button{
+ width: 100px;
+ border-radius: 5px;
+ height: 38px;
+   color: aliceblue;
+   border: none;
+}
+
+.img{
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+.img img{
+    width: 450px;
+    max-width: 100%;
+    height: auto;
+}
+.d2{
+    margin-left: 30%;
+}
+.d3{
+    margin-left: 20%;
+}
+.d4{
+    margin-left: 30%;
+}

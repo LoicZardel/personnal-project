@@ -1,0 +1,71 @@
+#head {
+font-size: 30px;
+justify-content: center;
+align-items: center;
+display: flex;
+}
+
+#logo{
+    width: 150px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    
+   
+}
+#confirm{
+  width: 150px;
+height: 40px;
+}
+#loupe{
+    width: 100px;
+    transform: translate(10px);
+}
+/*presentation restaurant trouvé*/
+#b{
+font-size: 25px;
+font-weight: bold;
+text-align: center;
+}
+
+/*first resto*/
+.r1 img{
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+.r1 img:hover{
+  width: 250px;
+  transform: scale(1.05);
+  
+  
+}
+.r1{
+display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  width: 80%;
+  border-radius: 5px;
+  box-shadow: 2 4px 16px rgba(0,0,0,0.15); 
+  max-width: 100%;
+  height: auto;;
+} 
+.r1 button{
+    background-color: #E84710;
+    border-radius: 5px;
+    width: 50%;
+}
+.r1 button:hover{
+   
+   background-color: #d63600;
+}
+.r1 h3{
+    color: #E84710;
+    font-family: 'Alexandria';
+}
+.r1 h4{
+    color: #131212;
+}
