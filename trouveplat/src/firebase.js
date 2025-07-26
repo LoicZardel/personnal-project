@@ -1,12 +1,13 @@
 // src/firebase.js
 
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getDatabase } from 'firebase/database';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC3eMfayvf2MkRpZRZXUa06wkrsefXw8pM",
+   apiKey: "AIzaSyC3eMfayvf2MkRpZRZXUa06wkrsefXw8pM",
   authDomain: "testfirebase-a2d93.firebaseapp.com",
   databaseURL: "https://testfirebase-a2d93-default-rtdb.firebaseio.com",
   projectId: "testfirebase-a2d93",
@@ -19,5 +20,11 @@ const firebaseConfig = {
 // Initialise Firebase
 const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);           // pour authentification
-export const db = getDatabase(app);  
+// Authentification
+export const auth = getAuth(app);
+
+// Firestore
+export const db = getFirestore(app);
+
+// ✅ Realtime Database
+export const database = getDatabase(app);

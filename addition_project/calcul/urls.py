@@ -9,5 +9,6 @@ urlpatterns = [
     path('addition/', views.addition_api, name='addition_api'),
      path('inscription/', inscription_view),
        path('connexion/', connexion_view),
+      
      
 ]

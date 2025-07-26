@@ -6,6 +6,13 @@ import AdminListePlat from './AdminListePlat';
 import AdminApp from './AdminApp';
 import Mescommande from './Mescommande';
 import { Route, Routes } from 'react-router-dom';
+import AjouterResto from './AjouterResto';
+
+<Routes>
+  ...
+  <Route path="/ajouter" element={<AjouterResto />} />
+</Routes>
+
 
 
 
@@ -21,6 +28,7 @@ function App() {
         <Route path='/AdminListePlat' element={<AdminListePlat />} /> 
         <Route path='/AdminApp' element={<AdminApp />} /> 
          <Route path='/Mescommande' element={<Mescommande />} /> 
+          <Route path="/ajouter" element={<AjouterResto />} />
         
       </Routes>
     </div>

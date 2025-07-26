@@ -14,6 +14,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 function App() {
+  const [recherche, setRecherche] = useState("");
   const handleGoogleLogin = () => {
   const provider = new GoogleAuthProvider();
 
@@ -65,7 +66,8 @@ function App() {
           </button>
           <button className='login' onClick={handleOpenLoginPopup}>
             Connexion
-          </button>
+          </button><br></br>
+          <Link to="/ajouter"><button className="btn btn-success">Ajouter un Resto</button></Link>
         </div>
 
         <img src={dishlogo} className="App-logo mb-3" alt="logo" />
@@ -74,13 +76,23 @@ function App() {
         <p style={{fontSize:18}} className='mb-4'>Trouvez vos plats où que vous soyez maintenant</p>
 
         <div className="search-container mb-4">
-          <input style={{height:50}}
-            type="text"
-            placeholder="Que voulez-vous manger maintenant?"
-            
-            className="form-control me-2"
-          />
-          <Link to='/Resto' ><button className="btn btn-primary" id='search'>Rechercher</button></Link>
+          <input
+  style={{ height: 50 }}
+  type="text"
+  placeholder="Que voulez-vous manger maintenant ?"
+  value={recherche}
+  onChange={(e) => setRecherche(e.target.value)}
+  className="form-control me-2"
+/>
+
+         <button
+  className="btn btn-primary"
+  id="search"
+  onClick={() => navigate('/Resto', { state: { plat: recherche } })}
+>
+  Rechercher
+</button>
+
           <Link to='/Mescommande' ><button className="btn btn-primary ml-2" id='search' style={{backgroundColor:'#E84710',marginLeft:10}}>Mes Commande</button></Link>
         </div>
 
@@ -198,6 +210,7 @@ function App() {
 </form>
 
             </div>
+            
           </div>
         )}
       </header>
