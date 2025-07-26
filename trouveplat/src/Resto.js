@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ref, onValue } from 'firebase/database';
 import { database } from './firebase';
 import './Resto.css';
@@ -53,7 +53,9 @@ function Resto() {
             adresse: resto.adresse,
             image: resto.image || r1,
             distance: dist,
-            prix: `${(Math.random() * 10 + 5).toFixed(2)} $`
+            prix: `${(Math.random() * 10 + 5).toFixed(2)} $`,
+            lat: resto.position.lat,
+            lng: resto.position.lng
           });
         }
       }
@@ -107,9 +109,15 @@ function Resto() {
                   <p>{r.adresse}</p>
                   <p>Prix : {r.prix}</p>
                   <p>Distance : {r.distance} km</p>
-                  <Link to='/Itineraire'>
-                    <button id='confirm' className='btn btn-success mb-3'>Confirmer</button>
-                  </Link>
+
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <button className='mb-3' id='confirm'>Confirmer</button>
+                  </a>
                 </div>
               </div>
             ))
