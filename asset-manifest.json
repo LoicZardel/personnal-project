@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/personnal-project/static/css/main.aee2ab23.css",
+    "main.js": "/personnal-project/static/js/main.cb97639d.js",
+    "static/js/453.3d571f30.chunk.js": "/personnal-project/static/js/453.3d571f30.chunk.js",
+    "static/media/r2.jpg": "/personnal-project/static/media/r2.498851d5eb687688b649.jpg",
+    "static/media/dish.jpg": "/personnal-project/static/media/dish.59282063aebe9f2f63c6.jpg",
+    "static/media/r1.jpg": "/personnal-project/static/media/r1.4f476f34895e3a3504f7.jpg",
+    "static/media/r3.jpg": "/personnal-project/static/media/r3.e4ebb2f0a36dad0cd25e.jpg",
+    "static/media/loupe.png": "/personnal-project/static/media/loupe.50b390b91fac6b1f4075.png",
+    "static/media/go.jpg": "/personnal-project/static/media/go.8914157cb091d756c135.jpg",
+    "static/media/respo.jpg": "/personnal-project/static/media/respo.55471792e800ca5daddc.jpg",
+    "static/media/gourmet.jpg": "/personnal-project/static/media/gourmet.e3225824b1bbdb0e1bfa.jpg",
+    "static/media/dishlogo.png": "/personnal-project/static/media/dishlogo.853212f6682ff9b35507.png",
+    "index.html": "/personnal-project/index.html",
+    "main.aee2ab23.css.map": "/personnal-project/static/css/main.aee2ab23.css.map",
+    "main.cb97639d.js.map": "/personnal-project/static/js/main.cb97639d.js.map",
+    "453.3d571f30.chunk.js.map": "/personnal-project/static/js/453.3d571f30.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aee2ab23.css",
+    "static/js/main.cb97639d.js"
+  ]
+}
