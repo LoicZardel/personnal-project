@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Resto() {
   const location = useLocation();
-  const platRecherche = location.state?.plat?.toLowerCase() || '';
+  const platRecherche = location.state?.plat?.toLowerCase().trim() || '';
   const [position, setPosition] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
 
@@ -38,9 +38,9 @@ function Resto() {
 
       for (let key in data) {
         const resto = data[key];
-        const plats = resto.plats.map(p => p.toLowerCase());
+        const plats = resto.plats.map(p => p.toLowerCase().trim());
 
-        if (plats.includes(platRecherche)) {
+        if (plats.some(p => similarEnough(p, platRecherche))) {
           const dist = getDistance(
             position.lat,
             position.lng,
@@ -64,6 +64,31 @@ function Resto() {
       setRestaurants(liste.slice(0, 3));
     });
   }, [position, platRecherche]);
+
+  // Fonction de similarité
+  function similarEnough(a, b) {
+    return a.includes(b) || b.includes(a) || levenshteinDistance(a, b) <= 2;
+  }
+
+  function levenshteinDistance(a, b) {
+    const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+
+    for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+    for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+
+    for (let i = 1; i <= a.length; i++) {
+      for (let j = 1; j <= b.length; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j - 1] + cost
+        );
+      }
+    }
+
+    return matrix[a.length][b.length];
+  }
 
   const getDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371;
@@ -109,7 +134,6 @@ function Resto() {
                   <p>{r.adresse}</p>
                   <p>Prix : {r.prix}</p>
                   <p>Distance : {r.distance} km</p>
-
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`}
                     target="_blank"
