@@ -86,7 +86,7 @@ function App() {
             className="form-control me-2"
           />
           <button className="btn btn-primary" id='search' onClick={handleSearch}>Rechercher</button>
-          <button className="btn btn-primary ml-2" id='search' style={{ backgroundColor: '#E84710', marginLeft: 10 }} onClick={handleCommandes}>
+          <button className="btn btn-primary ml-2" id='search' style={{ backgroundColor: '#E84710', marginLeft: 10, display: 'none' }} onClick={handleCommandes}>
             Mes Commande
           </button>
         </div>
